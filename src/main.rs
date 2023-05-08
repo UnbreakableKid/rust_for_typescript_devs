@@ -1,7 +1,15 @@
 fn main() {
-    let list: Vec<i32> = vec![0, 1, 2, 3];
+    let filename = std::env::args()
+        .nth(1)
+        .expect("the file name must be passed");
 
-    let list: Vec<_> = list.iter().map(|x| x + 1).collect();
+    let file = std::fs::read_to_string(filename).expect("unable to read the file to string");
 
-    print!("{:?}", list);
+    file.lines().for_each(|f| {
+        if let Ok(x) = f.parse::<usize>() {
+            println!("{}", x);
+        } else {
+            println!("Line not a number")
+        }
+    })
 }

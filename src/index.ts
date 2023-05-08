@@ -1,5 +1,18 @@
-let list = [0, 1, 2, 3];
+import fs from "fs"
 
-let addedList = list.map(x => x + 1);
+const fileName = process.argv[2];
 
-console.log(addedList);
+if (fileName) {
+
+
+    fs.readFileSync(fileName).toString().split("\n")
+        .forEach(line => {
+            const print = parseInt(line)
+            if (isNaN(print)) {
+                console.log("Linenot a number")
+            }
+            else { console.log(print) }
+        }
+        );
+
+}
