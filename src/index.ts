@@ -1,18 +1,32 @@
-import fs from "fs"
-
-const fileName = process.argv[2];
-
-if (fileName) {
-
-
-    fs.readFileSync(fileName).toString().split("\n")
-        .forEach(line => {
-            const print = parseInt(line)
-            if (isNaN(print)) {
-                console.log("Linenot a number")
-            }
-            else { console.log(print) }
-        }
-        );
-
+interface Area {
+    area(): number;
 }
+
+class Rectangle implements Area {
+    constructor(
+        public x: number,
+        public y: number,
+        public width: number,
+        public height: number
+    ) { }
+    area(): number {
+        return this.width * this.height;
+    }
+    toString() {
+        return `Rectangle(${this.x}, ${this.y}): ${this.width}x${this.height}`;
+    }
+}
+
+
+class Circle {
+    constructor(
+        public x: number,
+        public y: number,
+        public radius: number,
+    ) { }
+
+    area(): number {
+        return this.radius * this.radius * Math.PI;
+    }
+}
+
