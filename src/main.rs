@@ -17,7 +17,7 @@ impl FromStr for Shape {
     type Err = anyhow::Error;
 
     fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
-        let (shape, data) = s.split_once(" ").unwrap_or(("", ""));
+        let (shape, data) = s.split_once(" ").unwrap_or(("", " "));
 
         match shape {
             "rect" => return Ok(Shape::Rect(data.parse()?)),
